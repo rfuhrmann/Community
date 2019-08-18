@@ -1,0 +1,100 @@
+<div class="section">
+    <h3>Status:</h3>
+    {% if page_owner == user %}
+        <p>
+            <!-- hide button if less than 2 status exist -->
+            {% if status.1 %}
+                <a class="btn btn-link" data-toggle="collapse" href="#collapseOldStatus" role="button"
+                   aria-expanded="false" aria-controls="collapseOldStatus">
+                    Show old status
+                </a>
+            {% endif %}
+            <a class="btn btn-link" data-toggle="collapse" href="#collapseStatusForm" role="button"
+               aria-expanded="false" aria-controls="collapseStatusForm">
+                Add new Status
+            </a>
+        </p>
+        <div class="collapse" id="collapseStatusForm">
+            <div class="card card-body">
+            {% include "status_form.html" %}
+        </div>
+        </div>
+    {% endif %}
+
+    <!-- show newest status -->
+    <div class="container" id="status">
+        {% if status.0 %}
+            <h3>{{ status.0.title }}</h3>
+            <p class="status_message">{{ status.0.message }}</p>
+            <p class="status_datetime">{{ status.0.datetime }}</p>
+        {% else %}
+            There is no status at this moment.
+        {% endif %}
+        <!-- ------------------- start comments ---------------- -->
+        <div class="btn-line">
+            <!-- hide button if no status exists -->
+            {% if status.0 %}
+                <p>
+                    <a class="btn btn-link" data-toggle="collapse" href="#collapseStatusOneComments" role="button"
+                       aria-expanded="false" aria-controls="collapseStatusOneComments">
+                        Show Comments
+                    </a>
+                </p>
+                <!-- allow comments if user not page_owner -->
+                {% if user != page_owner %}
+                    {% include "status_comment_section.html" %}
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="collapse" id="collapseStatusOneComments">
+            <div class="card card-body">
+                {% for c in status.0.comments.all %}
+                    <div class="comment">
+                        <p class="comment_message">{{ c.message }}</p>
+                        <span class="comment_user"><a
+                                href="/user/profile/{{ c.user }}/">{{ c.user }}</a></span>
+                        <span class="comment_datetime">{{ c.datetime }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- ------------------- end comments ---------------- -->
+    </div>
+
+    <!-- show all status except the newest -->
+    <div class="collapse" id="collapseOldStatus">
+        <div class="card card-body">
+            {% for item in status %}
+                {% if item != status.0 %}
+                    <div class="container" id="status">
+                        <h3>{{ item.title }}</h3>
+                        <p class="status_message">{{ item.message }}</p>
+                        <p class="status_datetime">{{ item.datetime }}</p>
+                        <!-- ------------------- start comments ---------------- -->
+                        <p>
+                            <a class="btn btn-link" data-toggle="collapse"
+                               href="#collapseStatusComments{{ item.pk }}"
+                               role="button"
+                               aria-expanded="false" aria-controls="collapseStatusComments{{ item.pk }}">
+                                Show Comments
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseStatusComments{{ item.pk }}">
+                            <div class="card card-body">
+                                {% for c in item.comments.all %}
+                                    <div class="comment">
+                                        <p class="comment_message">{{ c.message }}</p>
+                                        <span class="comment_user"><a
+                                                href="/user/profile/{{ c.user }}/">{{ c.user }}</a></span>
+                                        <span class="comment_datetime">{{ c.datetime }}</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- ------------------- end comments ---------------- -->
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

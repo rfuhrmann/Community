@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'discussion.css' %}">
+{% endblock %}
+{% block js %}
+    <!--<script src="/discussions/lib/jquery-3.2.1.min.js"></script>-->
+    {# <script src="{% static 'jquery-3.2.1.min.js' %}"></script> #}
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    {# <script src="{% static 'message_handler.js' %}"></script> #}
+    <script src="{% static 'message_handler.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Discussion: {{ discussion.title }}</h2>
+                <p>{{ discussion.message }}</p>
+                <p>Owner: <a href="/user/profile/{{ discussion.owner }}/">{{ discussion.owner }}</a></p>
+            </div>
+        </div>
+
+        {% if user.is_authenticated %}
+            {% if is_participant %}
+                <p><a class="btn btn-primary" href="remove_participant/{{ user.username }}/" role="button">Unsubscribe
+                    discussion</a></p>
+            {% else %}
+                <p><a class="btn btn-primary" href="add_participant/{{ user.username }}/" role="button">Subscribe
+                    discussion</a></p>
+            {% endif %}
+            <p>
+                <a class="btn btn-link" data-toggle="collapse" href="#collapseDiscussionCommentForm" role="button"
+                   aria-expanded="false" aria-controls="collapseDiscussionCommentForm">
+                    Add comment
+                </a>
+            </p>
+            <div class="collapse" id="collapseDiscussionCommentForm">
+                <div class="card card-body">
+                {% include "discussion_comment_form.html" %}
+            </div>
+            </div>
+        {% endif %}
+
+        <!-- test element to be removed -->
+        <div id="comments"></div>
+
+        <div class="row" id="discussion_comments">
+
+            {% include "discussion_comment_section.html" %}
+
+        </div>
+
+    </div>
+{% endblock %}
+

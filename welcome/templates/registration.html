@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <p> Registration </p>
+
+    <div class="container" id="signup">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4">
+                {% if user.username %}
+                    <p>Please logout before signup</p>
+                    <a class="btn btn-primary" href="/base/logout/" role="button">Logout</a>
+                {% else %}
+                    <form action="" method="post" id="registration_form">
+                        {% csrf_token %}
+                        {{ signup_form }}
+                        <button type="submit" class="btn btn-primary">Signup</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% if privacy.events or page_owner == user %}
+    <div class="section">
+        <h3>Events:</h3>
+        <p>
+            <a class="btn btn-link" data-toggle="collapse" href="#collapseEventSection" role="button"
+               aria-expanded="false" aria-controls="collapseEventSection">
+                Show events
+            </a>
+            {% if user == page_owner %}
+                <a class="btn btn-link" data-toggle="collapse" href="#collapseEventForm" role="button"
+                   aria-expanded="false" aria-controls="collapseEventForm">
+                    Add new event
+                </a>
+            {% endif %}
+        </p>
+        {% if user == page_owner %}
+            <div class="collapse" id="collapseEventForm">
+                <div class="card card-body">
+                        {% include "event_form.html" %}
+                    </div>
+            </div>
+        {% endif %}
+        <div class="collapse" id="collapseEventSection">
+
+            <div class="my_events">
+                {% if events == None %}<p>you don´t have any events</p>{% endif %}
+                {% for e in events %}
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="/event/{{ e.pk }}/" class="card-link">{{ e.name }}</a></h5>
+                            <p class="card-text">{{ e.description }}</p>
+                            <h6 class="card-subtitle mb-2 text-muted">Owner: <a
+                                    href="/user/profile/{{ e.owner.username }}/">{{ e.owner.username }}</a></h6>
+                            {% if user == e.owner %}
+                                <a href="/event/{{ e.pk }}/remove_event/" class="card-link">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h3>Event invitations</h3>
+            <div class="event_invitation">
+                {% if not event_invitations %}<p>you don´t have any event invitations</p>
+                {% else %}
+                    {% for invitation in event_invitations %}
+                        <div class="card" style="width: 12rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ invitation.event.name }}</h5>
+                                <p class="card-text">{{ invitation.event.description }}</p>
+                                <h6 class="card-subtitle mb-2 text-muted">Owner: <a
+                                        href="/user/profile/{{ invitation.event.owner.username }}/">{{ invitation.event.owner.username }}</a></h6>
+                                {% if user == page_owner %}
+                                    <a href="/event/{{ invitation.pk }}/accept_invitation/{{ page_owner.username }}/"
+                                       class="btn btn-primary">Accept</a>
+                                    <a href="/event/{{ invitation.pk }}/decline_invitation/{{ page_owner.username }}/"
+                                       class="btn btn-primary">Decline</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endif %}

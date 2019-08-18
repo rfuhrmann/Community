@@ -1,0 +1,174 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "first_name": "Adam",
+      "last_name": "One",
+      "username": "adam",
+      "email": "adam.one@eden.de",
+      "password": "pw",
+      "address": 1,
+      "is_staff": "False",
+      "is_active": "True",
+      "is_superuser": "False",
+      "last_login": "2018-11-09 17:23:58.247084",
+      "date_joined": "2018-11-09 17:23:58.247084",
+      "phone": "+00 00000000001",
+      "logged_in": "False",
+      "img": "users/static/img/user/adam/profile/adam1.png"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "first_name": "Eva",
+      "last_name": "One",
+      "username": "eva",
+      "email": "eva.one@eden.de",
+      "password": "pw",
+      "address": 1,
+      "is_staff": "False",
+      "is_active": "True",
+      "is_superuser": "False",
+      "last_login": "2018-11-09 19:23:58.247084",
+      "date_joined": "2018-11-09 18:23:58.247084",
+      "phone": "+00 00000000002",
+      "logged_in": "False",
+      "img": ""
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "first_name": "Alfred",
+      "last_name": "Two",
+      "username": "alf",
+      "email": "alf.two@earth.com",
+      "password": "pw",
+      "address": 2,
+      "is_staff": "False",
+      "is_active": "True",
+      "is_superuser": "False",
+      "last_login": "2018-11-11 19:23:58.247084",
+      "date_joined": "2018-11-11 18:23:58.247084",
+      "phone": "+00 10000000003",
+      "logged_in": "False",
+      "img": ""
+    }
+  },
+  {
+    "model": "users.address",
+    "pk": 1,
+    "fields": {
+      "country": "Finland",
+      "postal_code": "10001",
+      "town": "Tampere",
+      "street": "Street",
+      "street_number": "1"
+    }
+  },
+  {
+    "model": "users.address",
+    "pk": 2,
+    "fields": {
+      "country": "Iceland",
+      "postal_code": "10002",
+      "town": "Reykjavik",
+      "street": "Path",
+      "street_number": "1"
+    }
+  },
+  {
+    "model": "users.friendship",
+    "pk": 1,
+    "fields": {
+      "request_datetime": "2018-11-09 19:23:58.247084",
+      "sender": 1,
+      "recipient": 2,
+      "status": "request"
+    }
+  },
+  {
+    "model": "users.friendship",
+    "pk": 2,
+    "fields": {
+      "request_datetime": "2018-11-11 10:23:58.247084",
+      "sender": 1,
+      "recipient": 3,
+      "status": "request"
+    }
+  },
+  {
+    "model": "users.status",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "title": "Eden os boring?",
+      "message": "pls let me know, if i´m not the only one",
+      "datetime": "2018-11-09 19:23:58.247084"
+    }
+  },
+  {
+    "model": "users.status",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "title": "I like apples!",
+      "message": "...they are delicious",
+      "datetime": "2018-11-09 19:23:58.247084"
+    }
+  },
+  {
+    "model": "users.status_comment",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "status": 1,
+      "message": "Hi",
+      "datetime": "2018-11-09 19:23:58.247084"
+    }
+  },
+  {
+    "model": "users.status_comment",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "status": 1,
+      "message": "no pressure, but i´m the only girl here so don´t screw it",
+      "datetime": "2018-11-09 19:23:58.247084"
+    }
+  },
+  {
+    "model": "users.status_comment",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "status": 2,
+      "message": "Don´t touch the apples!",
+      "datetime": "2018-11-09 19:23:58.247084"
+    }
+  },
+  {
+    "model": "users.privacy",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "status_comments": true,
+      "friends": true,
+      "discussions": true,
+      "events": true
+    }
+  },
+  {
+    "model": "users.privacy",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "status_comments": true,
+      "friends": true
+    }
+  }
+]

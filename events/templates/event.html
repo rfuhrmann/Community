@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'event.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>{{ event.name }}</h2>
+                <p>Description: {{ event.description }}</p>
+                <p>Date: {{ event.start_datetime }} - {{ event.end_datetime }}</p>
+                {% if event.place %}
+                    <p>Place: {{ event.place.name }} - {{ event.place.description }}</p>
+                {% endif %}
+                <p>Category: {{ event.get_category_display }}</p>
+                <p>Owner: <a href="/user/profile/{{ event.owner }}/">{{ event.owner }}</a></p>
+                <p>
+                    {% if user == event.owner %}
+                        <a class="btn btn-link" data-toggle="collapse" href="#collapseEditEventForm" role="button"
+                           aria-expanded="false" aria-controls="collapseEditEventForm">
+                            Edit event
+                        </a>
+                        <div class="collapse" id="collapseEditEventForm">
+                            <div class="card card-body">
+                                {% include "event_form.html" %}
+                            </div>
+                        </div>
+                    {% elif user.is_authenticated %}
+                        <p><a class="btn btn-primary" href="remove_participation/{{ user.username }}/" role="button">Leave
+                            event</a></p>
+                    {% endif %}
+                </p>
+            </div>
+
+        </div>
+
+        <h3>Participants:</h3>
+        <p>
+            <a class="btn btn-link" data-toggle="collapse" href="#collapseParticipants" role="button"
+               aria-expanded="false" aria-controls="collapseParticipants">
+                Show participants
+            </a>
+            {% if user == page_owner or is_participant %}
+                <a class="btn btn-link" data-toggle="collapse" href="#collapseParticipantForm" role="button"
+                   aria-expanded="false" aria-controls="collapseParticipantForm">
+                    Add participant
+                </a>
+            {% endif %}
+        </p>
+        {% if user == page_owner or is_participant %}
+            <div class="collapse" id="collapseParticipantForm">
+                <div class="card card-body">
+                        {% include "participant_form.html" %}
+                    </div>
+            </div>
+        {% endif %}
+        <div class="collapse" id="collapseParticipants">
+            <div class="card card-body">
+                {% include "participant_section.html" %}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+

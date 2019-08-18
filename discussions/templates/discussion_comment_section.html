@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<div class="container">
+    {% for c in discussion_comments.all %}
+        <div class="row ">
+            <div class="col">
+                <div class="card discussion_comment">
+                    <div class="card-body">
+                        <p class="discussion_message">{{ c.message }}</p>
+                        <span class="discussion_comment_user"><a
+                                href="/user/profile/{{ c.user }}/">{{ c.user }}</a></span>
+                        <span class="discussion_comment_datetime">{{ c.datetime }}</span>
+                        {% if user == c.discussion.owner or user == c.user %}
+                            <a href="/discussion/{{ c.discussion.pk }}/remove_discussion_comment/{{ c.pk }}/"
+                               class="card-link">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,29 @@
+{% if privacy.contact or page_owner == user %}
+    <div class="section">
+        <h3>Contact:</h3>
+        <p>
+            <a class="btn btn-link" data-toggle="collapse" href="#collapseContactForm" role="button"
+               aria-expanded="false" aria-controls="collapseContactForm">
+                Show contact
+            </a>
+            {% if user == page_owner %}
+                <a class="btn btn-link" data-toggle="collapse" href="#collapsePasswordForm" role="button"
+                   aria-expanded="false" aria-controls="collapsePasswordForm">
+                    Change Password
+                </a>
+            {% endif %}
+        </p>
+        {% if user == page_owner %}
+            <div class="collapse" id="collapsePasswordForm">
+                <div class="card card-body">
+                    {% include "password_form.html" %}
+                </div>
+            </div>
+        {% endif %}
+        <div class="collapse" id="collapseContactForm">
+            <div class="card card-body">
+                {% include "contact_form.html" %}
+            </div>
+        </div>
+    </div>
+{% endif %}

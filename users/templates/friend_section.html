@@ -1,0 +1,117 @@
+{% if privacy.friends or page_owner == user %}
+    <div class="section" id="friendships">
+
+        <h3>Friendships:</h3>
+        <p>
+            <a class="btn btn-link" data-toggle="collapse" href="#collapseFriendSection" role="button"
+               aria-expanded="false" aria-controls="collapseFriendSection">
+                Show friends
+            </a>
+            {% if user == page_owner %}
+                <a class="btn btn-link" data-toggle="collapse" href="#collapseFriendForm" role="button"
+                   aria-expanded="false" aria-controls="collapseFriendForm">
+                    Add friend
+                </a>
+            {% endif %}
+        </p>
+        {% if user == page_owner %}
+            <div class="collapse" id="collapseFriendForm">
+                <div class="card card-body">
+                        {% include "friend_form.html" %}
+                    </div>
+            </div>
+        {% endif %}
+        <div class="collapse" id="collapseFriendSection">
+            <div class="friendship">
+                {% if friendships == None %}<p>you don´t have any friends</p>{% endif %}
+                {% for f in friendships %}
+                    <!-- if user is sender -> show recipient -->
+                    {% if f.sender.pk == page_owner.pk %}
+                        <div class="card" style="width: 12rem;">
+                            <img class="card-img-top" src="{{ f.recipient.img }}"
+                                 alt="image of {{ f.recipient.username }}">
+                            <div class="card-body">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a
+                                            href="/user/profile/{{ f.recipient.username }}/">{{ f.recipient.username }}</a>
+                                    </h5>
+                                    <p class="card-text">Since: {{ f.response_datetime }}</p>
+                                    {% if user == page_owner %}
+                                        <a href="/user/profile/{{ page_owner.username }}/remove_friendship/{{ f.pk }}/"
+                                           class="btn btn-primary">Remove</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- if user is recipient -> show sender -->
+                    {% else %}
+                        <div class="card" style="width: 12rem;">
+                            <img class="card-img-top" src="{{ f.sender.img }}" alt="image of {{ f.sender.username }}">
+                            <div class="card-body">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a
+                                            href="/user/profile/{{ f.sender.username }}/">{{ f.sender.username }}</a>
+                                    </h5>
+                                    <p class="card-text">Since: {{ f.response_datetime }}</p>
+                                    {% if user == page_owner %}
+                                        <a href="/user/profile/{{ page_owner.username }}/remove_friendship/{{ f.pk }}/"
+                                           class="btn btn-primary">Remove</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <h3>Receipt friendship requests</h3>
+            <div class="friendship">
+                {% if friendships_receipt == None %}<p>no friendship requests</p>{% endif %}
+                {% for request in friendships_receipt %}
+                    <div class="card" style="width: 12rem;">
+                        <img class="card-img-top" src="{{ request.sender.img }}"
+                             alt="image of {{ request.sender.username }}">
+                        <div class="card-body">
+                            <h5 class="card-title"><a
+                                    href="/user/profile/{{ request.sender.username }}/">{{ request.sender.username }}</a>
+                            </h5>
+                            <p class="card-text">{{ request.sender.first_name }} {{ request.sender.last_name }}</p>
+                            <p class="card-text">{{ request.request_datetime }}</p>
+                            {% if user == page_owner%}
+                                <a href="/user/profile/{{ page_owner.username }}/accept_friendship/{{ request.pk }}/"
+                                   class="btn btn-primary">Accept</a>
+                                <a href="/user/profile/{{ page_owner.username }}/decline_friendship/{{ request.pk }}/"
+                                   class="btn btn-primary">Decline</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h3>Sent friendship requests</h3>
+            <div class="friendship">
+                {% if friendships_requested == None %}<p>no friendships requested</p>{% endif %}
+                {% for request in friendships_requested %}
+                    <div class="card" style="width: 12rem;">
+                        <img class="card-img-top" src="{{ request.recipient.img }}"
+                             alt="image of {{ request.recipient.username }}">
+                        <div class="card-body">
+                            <h5 class="card-title"><a
+                                    href="/user/profile/{{ request.recipient.username }}/">{{ request.recipient.username }}</a>
+                            </h5>
+                            {% if request.status == "declined" %}
+                                <h6 class="card-subtitle mb-2 text-muted">declined</h6>
+                            {% endif %}
+                            <p class="card-text">{{ request.request_datetime }}</p>
+                            {% if user == page_owner %}
+                                <a href="/user/profile/{{ page_owner.username }}/remove_friendship/{{ request.pk }}/"
+                                   class="btn btn-primary">Remove</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endif %}

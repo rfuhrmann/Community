@@ -1,0 +1,16 @@
+{% if user == page_owner %}
+    <div class="section">
+        <h3>Privacy:</h3>
+        <p>
+            <a class="btn btn-link" data-toggle="collapse" href="#collapsePrivacyForm" role="button"
+               aria-expanded="false" aria-controls="collapsePrivacyForm">
+                Show privacy
+            </a>
+        </p>
+        <div class="collapse" id="collapsePrivacyForm">
+            <div class="card card-body">
+        {% include "privacy_form.html" %}
+    </div>
+        </div>
+    </div>
+{% endif %}

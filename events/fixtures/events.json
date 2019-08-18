@@ -1,0 +1,25 @@
+[
+  {
+    "model": "events.place",
+    "pk": 1,
+    "fields": {
+      "name": "Apple Tree",
+      "description": "On the Apple Hill",
+      "address": 1
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "participants": [2],
+      "name": "Apple Challenge",
+      "description": "Who touches first?",
+      "category": "sitsit",
+      "start_datetime": "2018-11-12 17:00:00.247084",
+      "end_datetime": "2018-11-12 18:00:00.247084",
+      "place": 1
+    }
+  }
+]

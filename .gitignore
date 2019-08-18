@@ -1,0 +1,7 @@
+#roberts local files
+.idea/
+db.sqlite3
+venv/
+
+#giovanni local files
+*__pycache__*

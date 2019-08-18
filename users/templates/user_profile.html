@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'user_profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'discussion_section.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'event.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <h2>Profile of {{ page_owner.username }}</h2>
+                <img src="{% static 'img/user/adam/profile/adam1.png' %}{{ page_owner.img }}" class="img-fluid"
+                     alt="Image of {{ user.username }}">
+                  {# image upload not implemented #}
+{#                {% if page_owner == user %}#}
+{#                    <p>#}
+{#                        <a class="btn btn-link" data-toggle="collapse" href="#collapseProfileImageForm" role="button"#}
+{#                           aria-expanded="false" aria-controls="collapseProfileImageForm">#}
+{#                            Upload Image#}
+{#                        </a>#}
+{#                    </p>#}
+{#                    <div class="collapse" id="collapseProfileImageForm">#}
+{#                        <div class="card card-body">#}
+{#                            {% include "image_form.html" %}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% endif %}#}
+
+                {% if user == page_owner or user_is_a_friend %}
+                    {% include "contact_section.html" %}
+                {% endif %}
+
+            </div>
+            <div class="col-12 col-md-9">
+                {% if user == page_owner or user_is_a_friend %}
+
+                    {% include "status_section.html" %}
+
+                    {% include "friend_section.html" %}
+
+                    {% include "discussion_section.html" %}
+
+                    {% include "event_section.html" %}
+
+                    {% include "address_section.html" %}
+
+                    {% include "privacy_section.html" %}
+
+                    {% if user == page_owner %}
+                        <p>
+                            <a class="btn btn-link" data-toggle="collapse" href="#collapseDeleteProfile" role="button"
+                               aria-expanded="false" aria-controls="collapseDeleteProfile">
+                                Remove user profile
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseDeleteProfile">
+                            <div class="card card-body">
+                                <a class="btn btn-primary" href="/user/{{ user.username }}/remove_user/" role="button">Yes,
+                                    i really want to remove my user profile.</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <p>Become a friend for more information</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

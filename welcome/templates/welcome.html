@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'welcome.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+    <div class="row justify-content-center" id="headline">
+        <div class="col-12">
+            <h1> WelcomePage! </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4"></div>
+        <div class="col-12 col-md-4">
+
+            <div class="container" id="login">
+                <div class="row justify-content-center">
+                    <div class="col-md-6-offset-md-3">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ login_form }}
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                        <br>
+                        <p>Don´t have an account?</p>
+                        <a class="btn btn-link" href="/registration" role="button">SignUp</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-4"></div>
+    </div>
+    </div>
+
+
+{% endblock %}

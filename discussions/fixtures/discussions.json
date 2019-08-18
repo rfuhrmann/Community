@@ -1,0 +1,22 @@
+[
+  {
+    "model": "discussions.discussion",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "participants": [2],
+      "title": "The apple issue",
+      "message": "Should we touch em or not"
+    }
+  },
+  {
+    "model": "discussions.discussion_comment",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "message": "no we shouldn´t",
+      "datetime": "2018-11-09 17:23:58.247084",
+      "discussion": 1
+    }
+  }
+]

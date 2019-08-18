@@ -1,0 +1,51 @@
+{% if privacy.discussions or page_owner == user %}
+    <div class="section">
+        <h3>Discussions:</h3>
+        <p>
+            <a class="btn btn-link" data-toggle="collapse" href="#collapseDiscussionSection" role="button"
+               aria-expanded="false" aria-controls="collapseDiscussionSection">
+                Show discussions
+            </a>
+            {% if user == page_owner %}
+                <a class="btn btn-link" data-toggle="collapse" href="#collapseDiscussionForm" role="button"
+                   aria-expanded="false" aria-controls="collapseDiscussionForm">
+                    Add discussion
+                </a>
+            {% endif %}
+        </p>
+        {% if user == page_owner %}
+            <div class="collapse" id="collapseDiscussionForm">
+                <div class="card card-body">
+                        {% include "discussion_form.html" %}
+                    </div>
+            </div>
+        {% endif %}
+        <div class="collapse" id="collapseDiscussionSection">
+            <div class="discussion">
+                {% if discussions == None %}<p>you don´t have any discussions</p>{% endif %}
+                {% for d in discussions %}
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="/discussion/{{ d.pk }}/" class="card-link">{{ d.title }}</a>
+                            </h5>
+                            {% if d.status == "closed" %}
+                                <h6 class="card-subtitle mb-2 text-muted">closed</h6>
+                            {% endif %}
+                            <p class="card-text">{{ d.message }}</p>
+                            <h6 class="card-subtitle mb-2 text-muted">Owner: <a
+                                    href="/user/profile/{{ d.owner.username }}/">{{ d.owner.username }}</a></h6>
+                            {% if d.owner == user %}
+                                {% if d.status != "closed" %}
+                                    <a href="/discussion/{{ d.pk }}/close_discussion" class="card-link">Close</a>
+                                {% endif %}
+                                <a href="/discussion/{{ d.pk }}/remove_discussion" class="card-link">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- show discussions -->
+
+        </div>
+    </div>
+{% endif %}

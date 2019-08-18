@@ -1,0 +1,8 @@
+/* stylesheet for discussion page */
+.discussion_comment:hover {
+    background-color: lightgray;
+}
+
+.discussion_comment_datetime {
+    float: right;
+}

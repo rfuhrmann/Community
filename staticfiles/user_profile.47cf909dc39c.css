@@ -1,0 +1,49 @@
+#status {
+    background-color: #EEEEEE;
+    margin-bottom: 5px;
+}
+
+#status .btn-line p{
+    display: inline;
+}
+
+.status_datetime {
+    text-align: right;
+}
+
+.comment {
+    background-color: #DDDDDD;
+    margin-bottom: 5px;
+}
+
+.comment_signature {
+
+}
+
+.comment_user {
+
+}
+
+.comment_datetime {
+    float: right;
+}
+
+.section {
+    border-bottom: 2px solid grey;
+}
+
+#show-friends-btn #collapseFriendSection{
+    display: inline;
+}
+
+#friendships .card-body{
+    padding: 0.5rem;
+}
+
+#collapseFriendSection:first-child{
+
+}
+
+.friendship .card {
+    display: inline-block;
+}

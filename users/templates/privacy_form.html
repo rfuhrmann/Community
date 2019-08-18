@@ -1,0 +1,53 @@
+<div class="container" id="privacy_section">
+    <div class="row">
+        <div class="col-12">
+            <form action="" method="post" id="privacy_form">
+                {% csrf_token %}
+
+                <div class="form-check">
+                    {{ privacy_form.contact}}
+                    <label class="form-check-label" for="contactCheck">
+                        Contact
+                    </label>
+                </div>
+                <div class="form-check">
+                    {{ privacy_form.address }}
+                    <label class="form-check-label" for="addressCheck">
+                        Address
+                    </label>
+                </div>
+                <div class="form-check">
+                    {{ privacy_form.status_comments }}
+                    <label class="form-check-label" for="status_commentsCheck">
+                        Status comments
+                    </label>
+                </div>
+                <div class="form-check">
+                    {{ privacy_form.friends }}
+                    <label class="form-check-label" for="friendsCheck">
+                        Friends
+                    </label>
+                </div>
+                <div class="form-check">
+                    {{ privacy_form.discussions }}
+                    <label class="form-check-label" for="discussionsCheck">
+                        Discussions
+                    </label>
+                </div>
+                <div class="form-check">
+                    {{ privacy_form.events }}
+                    <label class="form-check-label" for="eventsCheck">
+                        Events
+                    </label>
+                </div>
+                <div class="form-check">
+                    {{ privacy_form.groups }}
+                    <label class="form-check-label" for="groupsCheck">
+                        Groups
+                    </label>
+                </div>
+                <div><button type="submit" class="btn btn-primary">Submit</button></div>
+            </form>
+        </div>
+    </div>
+</div>

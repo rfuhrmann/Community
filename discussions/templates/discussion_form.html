@@ -1,0 +1,11 @@
+<div class="container" id="add_discussion_section">
+    <div class="row">
+        <div class="col-12">
+            <form action="" method="post" id="discussion_form">
+                {% csrf_token %}
+                {{ discussion_form }}
+                <div><button type="submit" class="btn btn-primary">Submit</button></div>
+            </form>
+        </div>
+    </div>
+</div>

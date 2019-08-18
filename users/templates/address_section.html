@@ -1,0 +1,16 @@
+{% if privacy.address or page_owner == user %}
+    <div class="section">
+        <h3>Address:</h3>
+        <p>
+            <a class="btn btn-link" data-toggle="collapse" href="#collapseAddressForm" role="button"
+               aria-expanded="false" aria-controls="collapseAddressForm">
+                Show address
+            </a>
+        </p>
+        <div class="collapse" id="collapseAddressForm">
+            <div class="card card-body">
+            {% include "address_form.html" %}
+        </div>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,7 @@
+.event_participants .card {
+    display: inline-block;
+}
+
+.my_events .card {
+    display: inline-block;
+}

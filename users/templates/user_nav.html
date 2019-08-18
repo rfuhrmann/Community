@@ -1,0 +1,18 @@
+{% if user.username %}
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="/user/profile/{{ user.username }}/">
+                Profile of {{ user.username }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/event/">Events</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/user/profile/adam">Friends</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/discussion/">Discussions</a>
+        </li>
+    </ul>
+{% endif %}

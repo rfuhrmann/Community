@@ -1,0 +1,17 @@
+<div class="container" id="address_section">
+    <div class="row">
+        <div class="col-12">
+            <form action="" method="post" id="address_form">
+                {% csrf_token %}
+                {% if user == page_owner %}
+                    {{ address_form }}
+                    <div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                {% else %}
+                    <fieldset disabled="disabled">{{ address_form }}</fieldset>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>

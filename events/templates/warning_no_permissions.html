@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'event.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container no_permission">
+        <div class="row">
+            <div class="col-12 warning_message">
+                <p>{{ message }}</p>
+                <p>{{ uri }}</p>
+                <p><a href="/" class="card-link">Back to start page</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

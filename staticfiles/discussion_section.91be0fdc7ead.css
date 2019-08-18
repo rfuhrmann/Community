@@ -1,0 +1,4 @@
+/* stylesheet for discussion section in profile_page */
+.discussion .card {
+    display: inline-block;
+}

@@ -1,0 +1,18 @@
+<div class="container" id="event_section">
+    <div class="row">
+        <div class="col-12">
+            <form action="" method="post" id="event_form">
+                {% csrf_token %}
+                {#{% load bootstrap4 %}#}           {# import bootstrap4/bootstrap3 #}
+                {#{% bootstrap_css %}#}         {# Embed Bootstrap CSS #}
+                <!-- CAN CAUSE PROBLEMS WITH COLLAPSE SECTIONS -->
+                {# {% bootstrap_javascript jquery='full' %}#}   {# Embed Bootstrap JS+jQuery #}
+                {# {{ event_form.media }}#}             {# Adds date-picker required JS and CSS #}
+                {{ event_form }}
+                {% if user == page_owner %}
+                    <div><button type="submit" class="btn btn-primary">Submit</button></div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>

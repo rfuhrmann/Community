@@ -1,0 +1,19 @@
+<div class="container event_participants">
+    {% if not participants %}<p>You should invite some participants</p>{% endif %}
+    {% for p in participants %}
+        <div class="card" style="width: 12rem;">
+            <img class="card-img-top" src="{{ p.img }}"
+                 alt="image of {{ p.username }}">
+            <div class="card-body">
+                    <h5 class="card-title"><a
+                            href="/user/profile/{{ p.username }}/">{{ p.username }}</a>
+                    </h5>
+                    <!--<p class="card-text">{{ f.request_datetime }}</p>-->
+                    {% if user == page_owner %}
+                        <a href="/event/{{ event.pk }}/remove_participant/{{ p.username }}/"
+                           class="btn btn-primary">Remove</a>
+                    {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

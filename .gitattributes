@@ -1,2 +1,2 @@
-- README.mb
-- staticfiles/*
+- README.mb linguist-vendored
+- staticfiles/* linguist-vendored

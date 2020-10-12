@@ -1,9 +1,6 @@
 **Welcome to the home of your group's BWA course project code and documentation!**
 
-This file is where your group writes your project plan/project report.
-
-When you write it, you must use Markdown. [Documentation for GitLab Flavored Markdown (GFM)](https://docs.gitlab.com/ee/user/markdown.html).
-
+Community is a phyton based web application. It allows people to connect, socialize and offers basic functions of modern social networks.
 
 # Initial project plan document
 The headers that must be present in this document are shown here. They were copied here from the course project assignment document.
@@ -13,8 +10,8 @@ For instructions on what to add under these headers, see the course project assi
 ## Course project group information
 Group-Name: bwa-group038
 
-* Giovanni Cioffi - 282979 - giovanni.cioffi@studenti.tut.fi
 * Robert Fuhrmann - 282790 - robert.fuhrmann@student.tut.fi
+* Giovanni Cioffi - 282979 - giovanni.cioffi@studenti.tut.fi
 
 GitLab-URL: https://course-gitlab.tut.fi/bwa-2018/bwa-group038  
 Heroku-URL (HTTPS!): https://bwa-group038.herokuapp.com/
